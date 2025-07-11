@@ -12,7 +12,7 @@ master:
   sudo usermod -aG docker jenkins
   sudo chown -R jenkins:jenkins /home/config
 node:
-  wget https://raw.githubusercontent.com/akshu20791/Deployment-script/main/k8s-nodes.sh
+  https://raw.githubusercontent.com/dotnikhil/install/refs/heads/main/k8s-nodes.sh
   modprobe br_netfilter
   echo 1 > /proc/sys/net/bridge/bridge-nf-call-iptables
   echo 1 > /proc/sys/net/ipv4/ip_forward
