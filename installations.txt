@@ -33,6 +33,8 @@ kubectl delete pods --all --all-namespaces
         static_configs:
           - targets: ['<server-ip>:9100']
 
+  100 - (avg by (instance) (rate(node_cpu_seconds_total{mode="idle"}[5m])) * 100)
+
 **SonarQube**
   docker pull sonarqube
   docker run -d --name sonarqube -p 9000:9000 sonarqube
