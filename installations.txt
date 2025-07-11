@@ -1,20 +1,43 @@
 **JENKINS**
+  wget https://raw.githubusercontent.com/akshu20791/Deployment-script/main/jenkins.sh
+  /var/lib/jenkins/secrets/initialAdminPassword
 
-wget https://raw.githubusercontent.com/akshu20791/Deployment-script/main/jenkins.sh
-/var/lib/jenkins/secrets/initialAdminPassword
+**K8S**
+master:
+  wget https://raw.githubusercontent.com/dotnikhil/install/refs/heads/main/k8s-master.sh
+  kubeadm token create --print-join-command
+  --cri-socket unix:///var/run/cri-dockerd.sock
+  (after 6443)
+  cp /root/.kube/config .
+  sudo usermod -aG docker jenkins
+  sudo chown -R jenkins:jenkins /home/config
+node:
+  wget https://raw.githubusercontent.com/akshu20791/Deployment-script/main/k8s-nodes.sh
+  modprobe br_netfilter
+  echo 1 > /proc/sys/net/bridge/bridge-nf-call-iptables
+  echo 1 > /proc/sys/net/ipv4/ip_forward
 
-K8S
-kubectl delete pods --all --all-namespaces
-
-wget https://raw.githubusercontent.com/akshu20791/Deployment-script/main/k8s-master.sh
-
-wget https://raw.githubusercontent.com/akshu20791/Deployment-script/main/k8s-nodes.sh
-
-modprobe br_netfilter
-echo 1 > /proc/sys/net/bridge/bridge-nf-call-iptables
-echo 1 > /proc/sys/net/ipv4/ip_forward
 
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.9.4/deploy/static/provider/aws/deploy.yaml
 
+kubectl delete pods --all --all-namespaces
 
-kubeadm token create --print-join-command
+**PROMETHEUS GRAFANA**
+
+  wget https://dl.grafana.com/enterprise/release/grafana-enterprise-8.4.4.linux-amd64.tar.gz
+  wget https://github.com/prometheus/prometheus/releases/download/v2.34.0/prometheus-2.34.0.linux-amd64.tar.gz
+  tar xvfz
+  prometheus.yaml
+    scrape_configs:
+      - job_name: 'node-exporter'
+        static_configs:
+          - targets: ['<server-ip>:9100']
+
+**SonarQube**
+  docker pull sonarqube
+  docker run -d --name sonarqube -p 9000:9000 sonarqube
+
+
+
+
+
