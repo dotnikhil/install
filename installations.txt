@@ -1,0 +1,20 @@
+**JENKINS**
+
+wget https://raw.githubusercontent.com/akshu20791/Deployment-script/main/jenkins.sh
+/var/lib/jenkins/secrets/initialAdminPassword
+
+K8S
+kubectl delete pods --all --all-namespaces
+
+wget https://raw.githubusercontent.com/akshu20791/Deployment-script/main/k8s-master.sh
+
+wget https://raw.githubusercontent.com/akshu20791/Deployment-script/main/k8s-nodes.sh
+
+modprobe br_netfilter
+echo 1 > /proc/sys/net/bridge/bridge-nf-call-iptables
+echo 1 > /proc/sys/net/ipv4/ip_forward
+
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.9.4/deploy/static/provider/aws/deploy.yaml
+
+
+kubeadm token create --print-join-command
