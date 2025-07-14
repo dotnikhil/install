@@ -22,6 +22,11 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/cont
 
 kubectl delete pods --all --all-namespaces
 
+EKS
+  https://github.com/ashokitschool/DevOps-Documents/blob/main/05-EKS-Setup.md
+
+  
+
 **PROMETHEUS GRAFANA**
 
   wget https://dl.grafana.com/enterprise/release/grafana-enterprise-8.4.4.linux-amd64.tar.gz
