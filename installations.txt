@@ -25,6 +25,18 @@ kubectl delete pods --all --all-namespaces
 EKS
   https://github.com/ashokitschool/DevOps-Documents/blob/main/05-EKS-Setup.md
 
+  https://raw.githubusercontent.com/dotnikhil/install/refs/heads/main/eks.sh
+
+  EKSCTL SYNTAX
+  eksctl create cluster --name cluster-name
+--region region-name
+--node-type instance-type
+--nodes-min 2
+--nodes-max 2 \ --zones ,
+  eksctl create cluster --name my-cluster --region us-east-1 --node-type t2.medium  --zones us-east-1a,us-east-1b
+  eksctl delete cluster --name my-cluster --region us-east-1
+  
+
   
 
 **PROMETHEUS GRAFANA**
