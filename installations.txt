@@ -56,6 +56,8 @@ EKS
   eksctl create cluster --name my-cluster --region us-east-1 --node-type t2.medium  --zones us-east-1a,us-east-1b
   eksctl delete cluster --name my-cluster --region us-east-1
   
+ sudo adduser --disabled-password remote
+ sudo usermod -aG sudo remote
 
   
 
